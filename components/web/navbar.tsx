@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { buttonVariants } from "../ui/button";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Navbar() {
   return (
     <nav className="w-full py-5 flex items-center justify-between">
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-12">
         <Link href="/">
           <h1 className="text-3xl font-bold">
             Next<span className="text-blue-500">Pro</span>
@@ -11,15 +13,29 @@ export function Navbar() {
         </Link>
 
         <div className="flex items-center gap-2">
-          <Link href="/">Home</Link>
-          <Link href="/blog">Blog</Link>
-          <Link href="/create">Create</Link>
+          <Link href="/" className={buttonVariants({ variant: "ghost" })}>
+            Home
+          </Link>
+          <Link href="/blog" className={buttonVariants({ variant: "ghost" })}>
+            Blog
+          </Link>
+          <Link href="/create" className={buttonVariants({ variant: "ghost" })}>
+            Create
+          </Link>
         </div>
       </div>
 
       <div className="flex items-center gap-2">
-        <Link href="/auth/sign-up">Sign up</Link>
-        <Link href="/auth/login">Login</Link>
+        <Link href="/auth/sign-up" className={buttonVariants()}>
+          Sign up
+        </Link>
+        <Link
+          href="/auth/login"
+          className={buttonVariants({ variant: "outline" })}
+        >
+          Login
+        </Link>
+        <ThemeToggle />
       </div>
     </nav>
   );
