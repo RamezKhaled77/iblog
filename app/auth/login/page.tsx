@@ -1,6 +1,5 @@
 "use client";
 
-import { signUpSchema } from "@/app/schemas/auth";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -17,40 +16,39 @@ import {
   FieldError,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/toast";
-import { authClient } from "@/lib/auth-client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader } from "lucide-react";
 import Link from "next/link";
+import { loginSchema } from "@/app/schemas/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import { authClient } from "@/lib/auth-client";
+import z from "zod";
+import { toast } from "@/components/ui/toast";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { Controller, useForm } from "react-hook-form";
-import z from "zod";
+import { Loader } from "lucide-react";
 
-export default function SignUpPage() {
+export default function LoginPage() {
   const [isPending, startTransition] = useTransition();
 
   const router = useRouter();
   const form = useForm({
-    resolver: zodResolver(signUpSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
   });
 
-  function handleSubmit(data: z.infer<typeof signUpSchema>) {
+  function handleSubmit(data: z.infer<typeof loginSchema>) {
     startTransition(async () => {
-      await authClient.signUp.email({
+      await authClient.signIn.email({
         email: data.email,
-        name: data.name,
         password: data.password,
         fetchOptions: {
           onSuccess: () => {
             toast.add({
               type: "success",
-              description: "Account created successfully!",
+              description: "Logged In successfully!",
             });
             router.push("/");
           },
@@ -68,27 +66,12 @@ export default function SignUpPage() {
   return (
     <Card>
       <CardHeader className="text-center">
-        <CardTitle className="text-lg">Sign Up</CardTitle>
-        <CardDescription>Create an account to get started</CardDescription>
+        <CardTitle className="text-lg">Login</CardTitle>
+        <CardDescription>Enter your creditials to get started</CardDescription>
       </CardHeader>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <CardContent>
           <FieldGroup>
-            <Controller
-              name="name"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field>
-                  <FieldLabel>Full Name</FieldLabel>
-                  <Input
-                    aria-invalid={fieldState.invalid}
-                    placeholder="Ahmed Ali"
-                    {...field}
-                  />
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
             <Controller
               name="email"
               control={form.control}
@@ -131,19 +114,19 @@ export default function SignUpPage() {
             {isPending ? (
               <>
                 <Loader className="size-4 animate-spin" />
-                <span>Signing Up...</span>
+                <span>Logining In...</span>
               </>
             ) : (
-              <span>Sign Up</span>
+              <span>Login</span>
             )}
           </Button>
           <p className="text-zinc-300">
-            You have an account.
+            You don&apos;t have an account.
             <Link
-              href="/login"
+              href="/sign-up"
               className={`${buttonVariants({ variant: "link" })} text-zinc-300`}
             >
-              Login
+              Sign Up
             </Link>
           </p>
         </CardFooter>
