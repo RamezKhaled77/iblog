@@ -1,6 +1,6 @@
 "use client";
 
-import { signUpSchemas } from "@/app/schemas/auth";
+import { signUpSchema } from "@/app/schemas/auth";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -17,13 +17,15 @@ import {
   FieldError,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth-client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
+import z from "zod";
 
 export default function SignUpPage() {
   const form = useForm({
-    resolver: zodResolver(signUpSchemas),
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -31,8 +33,12 @@ export default function SignUpPage() {
     },
   });
 
-  function handleSubmit() {
-    console.log("submittt");
+  async function handleSubmit(data: z.infer<typeof signUpSchema>) {
+    await authClient.signUp.email({
+      email: data.email,
+      name: data.name,
+      password: data.password,
+    });
   }
 
   return (

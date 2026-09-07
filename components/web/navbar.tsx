@@ -27,7 +27,7 @@ export function Navbar() {
 
       <div className="flex items-center gap-2">
         <Link href="/auth/sign-up" className={buttonVariants()}>
-          Sign up
+          Sign Up
         </Link>
         <Link
           href="/auth/login"
