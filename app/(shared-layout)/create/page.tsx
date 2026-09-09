@@ -54,7 +54,7 @@ export default function CreatePage() {
         <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
           Create Post
         </h1>
-        <p className="text-xl text-muted-foreground pt-4">
+        <p className="text-xl max-w-2xl mx-auto text-muted-foreground pt-4">
           Share your thoughts with the big world
         </p>
       </div>
