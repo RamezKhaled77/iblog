@@ -19,20 +19,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/toast";
-import { api } from "@/convex/_generated/api";
+import { createBlogAction } from "@/app/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "convex/react";
 import { Loader } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 
 export default function CreatePage() {
   const [isPending, startTransition] = useTransition();
-  const router = useRouter();
 
-  const mutation = useMutation(api.posts.createPost);
   const form = useForm({
     resolver: zodResolver(postSchema),
     defaultValues: {
@@ -42,18 +38,13 @@ export default function CreatePage() {
   });
 
   function handleSubmit(values: z.infer<typeof postSchema>) {
-    startTransition(() => {
-      mutation({
-        title: values.title,
-        body: values.content,
-      });
+    startTransition(async () => {
+      await createBlogAction(values);
 
       toast.add({
         type: "success",
         description: "Post is created successfully!",
       });
-
-      router.push("/");
     });
   }
 
