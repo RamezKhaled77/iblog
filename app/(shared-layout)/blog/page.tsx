@@ -9,6 +9,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
+export const dynamic = "force-static";
+// 'auto' | 'force-dynamic' | 'error' | 'force-static'
+
 export default async function BlogPage() {
   return (
     <div className="py-12">
