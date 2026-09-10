@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         port: "",
       },
+      {
+        hostname: "calm-basilisk-476.eu-west-1.convex.cloud",
+        protocol: "https",
+        port: "",
+      },
     ],
   },
 };

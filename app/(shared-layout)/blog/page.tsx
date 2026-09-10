@@ -45,6 +45,7 @@ interface BlogCardProps {
     _id: string;
     title: string;
     body: string;
+    imageUrl: string | null;
   };
 }
 
@@ -53,7 +54,11 @@ function BlogCard({ post }: BlogCardProps) {
     <Card className="pt-0">
       <div className="relative h-48 w-full overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1604151364473-02e3e26124a6?q=80&w=929&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          className="object-cover"
+          src={
+            post.imageUrl ??
+            "https://images.unsplash.com/photo-1604151364473-02e3e26124a6?q=80&w=929&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
           alt="placeholder image"
           fill
         />

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import {
   Field,
+  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -21,7 +22,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/toast";
 import { createBlogAction } from "@/app/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader } from "lucide-react";
+import { ImageUp, Loader } from "lucide-react";
 import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
@@ -50,12 +51,12 @@ export default function CreatePage() {
   }
 
   return (
-    <div className="py-12">
-      <div className="text-center mb-12">
+    <div className="py-4">
+      <div className="text-center mb-6">
         <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
           Create Post
         </h1>
-        <p className="text-xl max-w-2xl mx-auto text-muted-foreground pt-4">
+        <p className="text-xl max-w-2xl mx-auto text-muted-foreground pt-2">
           Share your thoughts with the big world
         </p>
       </div>
@@ -73,8 +74,9 @@ export default function CreatePage() {
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field>
-                    <FieldLabel>Title</FieldLabel>
+                    <FieldLabel htmlFor="title">Title</FieldLabel>
                     <Input
+                      id="title"
                       aria-invalid={fieldState.invalid}
                       placeholder="Super cool title"
                       {...field}
@@ -88,8 +90,9 @@ export default function CreatePage() {
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field>
-                    <FieldLabel>Post content</FieldLabel>
+                    <FieldLabel htmlFor="content">Content</FieldLabel>
                     <Textarea
+                      id="content"
                       aria-invalid={fieldState.invalid}
                       placeholder="Super cool blog content..."
                       {...field}
@@ -103,17 +106,44 @@ export default function CreatePage() {
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field>
-                    <FieldLabel>Upload an Image</FieldLabel>
-                    <Input
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Super cool blog content..."
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        field.onChange(file);
-                      }}
-                    />
+                    <FieldLabel htmlFor="image">Image</FieldLabel>
+                    <label
+                      htmlFor="image"
+                      className={`flex flex-col items-center justify-center w-full h-35 border-2 border-dashed rounded-xl cursor-pointer transition-all duration-200 
+      ${
+        fieldState.invalid
+          ? "border-red-500 bg-red-50/50 hover:bg-red-50 dark:bg-red-500/20 dark:hover:bg-red-500/30"
+          : "border-gray-300 bg-gray-50 hover:bg-gray-100 hover:border-gray-400 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800"
+      }`}
+                    >
+                      <div className="flex flex-col items-center justify-center pt-3 pb-4">
+                        <ImageUp
+                          size={40}
+                          className="text-muted-foreground mb-3"
+                        />
+                        <p className="mb-0.5 text-sm text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-indigo-600 dark:text-indigo-400">
+                            Click here to upload an image
+                          </span>
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          PNG, JPG, WEBP (Max 5MB)
+                        </p>
+                      </div>
+
+                      <input
+                        id="image"
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        aria-invalid={fieldState.invalid}
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          field.onChange(file);
+                        }}
+                      />
+                    </label>
+
                     <FieldError errors={[fieldState.error]} />
                   </Field>
                 )}
