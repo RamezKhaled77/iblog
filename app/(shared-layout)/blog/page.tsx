@@ -5,12 +5,20 @@ import { api } from "@/convex/_generated/api";
 import { fetchQuery } from "convex/nextjs";
 
 import { ArrowUpRight } from "lucide-react";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
 export const dynamic = "force-static";
 // 'auto' | 'force-dynamic' | 'error' | 'force-static'
+
+export const metadata: Metadata = {
+  title: "NextPro Blog | Next.js 16",
+  description: "Read our latest articles and insights.",
+  category: "Web development",
+  authors: [{ name: "Ramez Khaled" }],
+};
 
 export default async function BlogPage() {
   return (
@@ -31,8 +39,6 @@ export default async function BlogPage() {
 }
 
 async function LoadBlogList() {
-  // await new Promise((resolve) => setTimeout(resolve, 3000));
-
   const data = await fetchQuery(api.posts.getPosts);
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
