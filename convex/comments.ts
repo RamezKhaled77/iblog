@@ -2,7 +2,7 @@ import { ConvexError, v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { authComponent } from "./auth";
 
-export const getCommentsByPost = query({
+export const getCommentsByPostId = query({
   args: {
     postId: v.id("posts"),
   },

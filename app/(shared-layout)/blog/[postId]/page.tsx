@@ -1,8 +1,9 @@
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import CommentsSection from "@/components/web/CommentsSection";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import { fetchQuery } from "convex/nextjs";
+import { fetchQuery, preloadQuery } from "convex/nextjs";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,12 +17,21 @@ interface PostIdRouteProps {
 export default async function PostIdRoute({ params }: PostIdRouteProps) {
   const { postId } = await params;
 
-  const post = await fetchQuery(api.posts.getPostById, { postId: postId });
+  const [post, preloadedComments] = await Promise.all([
+    await fetchQuery(api.posts.getPostById, { postId: postId }),
+    await preloadQuery(api.comments.getCommentsByPostId, {
+      postId: postId,
+    }),
+  ]);
 
   if (!post) {
-    return {
-      title: "Post not found",
-    };
+    return (
+      <div>
+        <h1 className="text-6xl font-extrabold text-red-500 p-20">
+          No post found
+        </h1>
+      </div>
+    );
   }
 
   return (
@@ -63,6 +73,8 @@ export default async function PostIdRoute({ params }: PostIdRouteProps) {
       <p className="text-lg leading-relaxed text-foreground/90 whitespace-pre-wrap">
         {post.body}
       </p>
+      <Separator className="my-6" />
+      <CommentsSection preloadedComments={preloadedComments} />
     </div>
   );
 }
