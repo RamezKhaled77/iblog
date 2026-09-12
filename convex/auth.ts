@@ -16,6 +16,7 @@ export const createAuth = (ctx: GenericCtx<DataModel>) => {
   return betterAuth({
     baseURL: siteUrl,
     database: authComponent.adapter(ctx),
+    trustedOrigins: ["https://iblog-w95o.vercel.app", "http://localhost:3000"],
     // Configure simple, non-verified email/password to get started
     emailAndPassword: {
       enabled: true,
