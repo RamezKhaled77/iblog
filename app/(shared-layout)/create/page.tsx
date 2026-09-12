@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/card";
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -26,6 +25,7 @@ import { ImageUp, Loader } from "lucide-react";
 import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
+import Image from "next/image";
 
 export default function CreatePage() {
   const [isPending, startTransition] = useTransition();
@@ -104,33 +104,100 @@ export default function CreatePage() {
               <Controller
                 name="image"
                 control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field>
-                    <FieldLabel htmlFor="image">Image</FieldLabel>
-                    <label
-                      htmlFor="image"
-                      className={`flex flex-col items-center justify-center w-full h-35 border-2 border-dashed rounded-xl cursor-pointer transition-all duration-200 
-      ${
-        fieldState.invalid
-          ? "border-red-500 bg-red-50/50 hover:bg-red-50 dark:bg-red-500/20 dark:hover:bg-red-500/30"
-          : "border-gray-300 bg-gray-50 hover:bg-gray-100 hover:border-gray-400 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800"
-      }`}
-                    >
-                      <div className="flex flex-col items-center justify-center pt-3 pb-4">
-                        <ImageUp
-                          size={40}
-                          className="text-muted-foreground mb-3"
-                        />
-                        <p className="mb-0.5 text-sm text-gray-600 dark:text-gray-400">
-                          <span className="font-semibold text-indigo-600 dark:text-indigo-400">
-                            Click here to upload an image
-                          </span>
-                        </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
-                          PNG, JPG, WEBP (Max 5MB)
-                        </p>
-                      </div>
+                render={({ field, fieldState }) => {
+                  // إنشاء رابط معاينة للـ File في حالة وجوده
+                  const selectedFile =
+                    field.value instanceof File ? field.value : null;
+                  const previewUrl = selectedFile
+                    ? URL.createObjectURL(selectedFile)
+                    : typeof field.value === "string"
+                      ? field.value
+                      : null;
 
+                  return (
+                    <Field>
+                      <FieldLabel htmlFor="image">Image</FieldLabel>
+
+                      {previewUrl ? (
+                        /* Card - after upload the image */
+                        <div className="relative flex items-center justify-between w-full p-3 border rounded-xl bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-800">
+                          <div className="flex items-center gap-6 ">
+                            {/* Preview thumbnail */}
+                            <Image
+                              src={previewUrl}
+                              alt="Selected preview"
+                              className="w-16 h-16 object-cover rounded-lg border border-gray-200 dark:border-gray-700"
+                              width={16}
+                              height={16}
+                            />
+                            {/* Image info */}
+                            <div className="flex flex-col overflow-hidden">
+                              <span className="text-sm font-medium text-gray-800 dark:text-gray-200 truncate max-w-[200px]">
+                                {selectedFile
+                                  ? selectedFile.name
+                                  : "Uploaded Image"}
+                              </span>
+                              {selectedFile && (
+                                <span className="text-xs text-muted-foreground">
+                                  {(selectedFile.size / (1024 * 1024)).toFixed(
+                                    2,
+                                  )}{" "}
+                                  MB
+                                </span>
+                              )}
+                              <span className="text-xs text-green-600 dark:text-green-400 font-medium mt-1 flex items-center gap-1">
+                                ✓ Ready for upload
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Remove/Change actions */}
+                          <div className="flex flex-col items-center gap-2">
+                            <label
+                              htmlFor="image"
+                              className="text-xs text-amber-600 hover:text-amber-700 dark:text-amber-400 font-medium cursor-pointer px-2 py-1 rounded-md hover:bg-amber-50 dark:hover:bg-amber-950/50 transition-colors"
+                            >
+                              Change
+                            </label>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              onClick={() => field.onChange(null)}
+                              className="text-xs cursor-pointer text-red-500 hover:text-red-600 font-medium px-2 py-1 rounded-md hover:bg-red-50 dark:hover:bg-red-950/50 transition-colors"
+                            >
+                              Remove
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        /* OG ui */
+                        <label
+                          htmlFor="image"
+                          className={`flex flex-col items-center justify-center w-full h-35 border-2 border-dashed rounded-xl cursor-pointer transition-all duration-200 
+            ${
+              fieldState.invalid
+                ? "border-red-500 bg-red-50/50 hover:bg-red-50 dark:bg-red-500/20 dark:hover:bg-red-500/30"
+                : "border-gray-300 bg-gray-50 hover:bg-gray-100 hover:border-gray-400 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800"
+            }`}
+                        >
+                          <div className="flex flex-col items-center justify-center pt-3 pb-4">
+                            <ImageUp
+                              size={40}
+                              className="text-muted-foreground mb-3"
+                            />
+                            <p className="mb-0.5 text-sm text-gray-600 dark:text-gray-400">
+                              <span className="font-semibold text-indigo-600 dark:text-indigo-400">
+                                Click here to upload an image
+                              </span>
+                            </p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                              PNG, JPG, WEBP (Max 5MB)
+                            </p>
+                          </div>
+                        </label>
+                      )}
+
+                      {/* Hidden input */}
                       <input
                         id="image"
                         type="file"
@@ -139,14 +206,16 @@ export default function CreatePage() {
                         aria-invalid={fieldState.invalid}
                         onChange={(e) => {
                           const file = e.target.files?.[0];
-                          field.onChange(file);
+                          if (file) {
+                            field.onChange(file);
+                          }
                         }}
                       />
-                    </label>
 
-                    <FieldError errors={[fieldState.error]} />
-                  </Field>
-                )}
+                      <FieldError errors={[fieldState.error]} />
+                    </Field>
+                  );
+                }}
               />
             </FieldGroup>
           </CardContent>
