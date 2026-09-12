@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "*.convex.cloud",
+      },
+      {
+        protocol: "https",
+        hostname: "*.convex.site",
+      },
     ],
   },
 };
