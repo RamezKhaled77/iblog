@@ -18,7 +18,7 @@ export function Navbar() {
       <div className="flex items-center gap-12">
         <Link href="/">
           <h1 className="text-3xl font-bold">
-            Next<span className="text-primary">Pro</span>
+            <span className="text-primary">i</span>Blog
           </h1>
         </Link>
 

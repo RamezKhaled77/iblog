@@ -6,8 +6,7 @@ import { fetchQuery } from "convex/nextjs";
 
 import { ArrowUpRight } from "lucide-react";
 import { Metadata } from "next";
-import { cacheTag } from "next/cache";
-import { cacheLife } from "next/cache";
+
 import Image from "next/image";
 import Link from "next/link";
 import { connection } from "next/server";
@@ -17,7 +16,7 @@ import { Suspense } from "react";
 // 'auto' | 'force-dynamic' | 'error' | 'force-static'
 
 export const metadata: Metadata = {
-  title: "NextPro Blog | Next.js 16",
+  title: "iBlog | Next.js 16",
   description: "Read our latest articles and insights.",
   category: "Web development",
   authors: [{ name: "Ramez Khaled" }],
@@ -34,17 +33,18 @@ export default async function BlogPage() {
           Insights, thoughts, and trends from our team.
         </p>
       </div>
-      {/* <Suspense fallback={<BlogListSkeleton />}> */}
-      <LoadBlogList />
-      {/* </Suspense> */}
+      <Suspense fallback={<BlogListSkeleton />}>
+        <LoadBlogList />
+      </Suspense>
     </div>
   );
 }
 
 async function LoadBlogList() {
-  "use cache";
-  cacheLife("hours");
-  cacheTag("blog");
+  // "use cache";
+  // cacheLife("hours");
+  // cacheTag("blog");
+  await connection();
   const data = await fetchQuery(api.posts.getPosts);
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
