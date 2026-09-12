@@ -1,6 +1,7 @@
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { BlogEmptyState } from "@/components/web/BlogEmptyState";
 import { api } from "@/convex/_generated/api";
 import { fetchQuery } from "convex/nextjs";
 
@@ -46,6 +47,11 @@ async function LoadBlogList() {
   // cacheTag("blog");
   await connection();
   const data = await fetchQuery(api.posts.getPosts);
+
+  if (!data || data?.length === 0) {
+    return <BlogEmptyState />;
+  }
+
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {data?.map((post, key) => (
