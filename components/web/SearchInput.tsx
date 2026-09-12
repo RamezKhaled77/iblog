@@ -46,8 +46,9 @@ export function SearchInput() {
           onChange={handleInputChange}
           onFocus={() => term.length >= 2 && setOpen(true)}
         />
-        <kbd className="pointer-events-none absolute right-[6.3px] top-[6.3px] hidden h-5 select-none items-center gap-1 rounded-sm border border-primary bg-muted px-1.5 font-mono text-[10px] font-medium text-primary opacity-100 sm:flex">
-          <span className="text-xs">⌘</span>/
+
+        <kbd className="pointer-events-none absolute right-[6.3px] top-[6.3px] hidden h-5 select-none items-center gap-1 rounded-sm border dark:border-primary bg-muted px-1.5 font-mono text-[10px] font-medium dark:text-primary text-gray-500 border-gray-600 opacity-100 sm:flex">
+          <span className="text-xs">⌘</span>+<span className="text-xs">/</span>
         </kbd>
       </div>
 
