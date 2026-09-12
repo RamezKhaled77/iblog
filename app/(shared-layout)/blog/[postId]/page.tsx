@@ -10,6 +10,7 @@ import { ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 interface PostIdRouteProps {
   params: Promise<{
@@ -47,6 +48,8 @@ export default async function PostIdRoute({ params }: PostIdRouteProps) {
     await fetchQuery(api.presence.getUserId, {}, { token }),
   ]);
 
+  if (!userId) redirect("/auth/login");
+
   if (!post) {
     return (
       <div>
@@ -61,7 +64,7 @@ export default async function PostIdRoute({ params }: PostIdRouteProps) {
     <div className="max-w-3xl mx-auto py-8 px-4 animate-in fade-in duration-500 relative">
       <Link
         href="/blog"
-        className={buttonVariants({ variant: "link", className: "mb-4" })}
+        className={buttonVariants({ variant: "outline", className: "mb-4" })}
       >
         <ArrowLeft />
         Back to blog
@@ -78,16 +81,17 @@ export default async function PostIdRoute({ params }: PostIdRouteProps) {
           className="object-cover hover:scale-105 transition-transform duration-500"
         />
       </div>
-      <div className="space-y-4 flex items-center justify-between">
+      <div className="space-y-4">
         <h1 className="text-4xl font-bold tracking-tight text-foreground">
           {post.title}
         </h1>
 
-        <div className="">
+        <div className="flex items-center gap-3">
           <p className="text-sm text-muted-foreground italic">
             Posted on:{" "}
             {new Date(post._creationTime).toLocaleDateString("en-US")}
           </p>
+          <span className="text-sm text-muted-foreground">||</span>
           {userId && <PostPresence roomId={post._id} userId={userId} />}
         </div>
       </div>
