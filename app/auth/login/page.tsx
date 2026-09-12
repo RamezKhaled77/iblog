@@ -122,7 +122,7 @@ export default function LoginPage() {
           <p className="text-zinc-300">
             You don&apos;t have an account.
             <Link
-              href="/sign-up"
+              href="/auth/sign-up"
               className={`${buttonVariants({ variant: "link" })} text-zinc-300`}
             >
               Sign Up

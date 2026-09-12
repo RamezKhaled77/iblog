@@ -140,7 +140,7 @@ export default function SignUpPage() {
           <p className="text-zinc-300">
             You have an account.
             <Link
-              href="/login"
+              href="/auth/login"
               className={`${buttonVariants({ variant: "link" })} text-zinc-300`}
             >
               Login
