@@ -19,6 +19,7 @@ export function ConvexClientProvider({
   return (
     <ConvexBetterAuthProvider
       client={convex}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       authClient={authClient as any}
       initialToken={initialToken}
     >

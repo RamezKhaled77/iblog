@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { HeroSection } from "@/components/web/HeroSection";
+import { TechLogosMarquee } from "@/components/web/TechLogosMarquee";
 
 export const metadata: Metadata = {
   title: {
@@ -62,5 +64,10 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <div>index page</div>;
+  return (
+    <div className="flex flex-col w-full">
+      <HeroSection />
+      <TechLogosMarquee />
+    </div>
+  );
 }

@@ -4,8 +4,12 @@ import { ReactNode } from "react";
 export default function SharedLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <Navbar />
-      {children}
+      <header className="w-full">
+        <div className="max-w-7xl mx-auto w-full px-4 md:px-6 lg:px-8">
+          <Navbar />
+        </div>
+      </header>
+      <div className="w-full flex-1 flex flex-col">{children}</div>
     </>
   );
 }

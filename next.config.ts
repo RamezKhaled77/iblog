@@ -23,6 +23,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "*.convex.site",
       },
+      {
+        protocol: "https",
+        hostname: "img.icons8.com",
+      },
     ],
   },
 };
