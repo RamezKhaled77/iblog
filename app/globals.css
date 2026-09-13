@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -165,5 +166,24 @@
 .marquee-group:hover .animate-marquee,
 .marquee-group:hover .animate-marquee-reverse {
   animation-play-state: paused;
+}
+
+/* ── Digital / Seven-Segment Clock ────────────────────────────── */
+.font-digital {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+
+/* Each digit occupies exactly one character-width so the clock
+   never shifts left/right as the digits change (e.g. 9→10) */
+.clock-display {
+  display: inline-flex;
+  gap: 0;
+  white-space: nowrap;
+  /* Width is pre-calculated for the widest possible string:
+     "12:00:00 AM" in Share Tech Mono at the applied font-size. */
+  min-width: 11ch;
+  justify-content: center;
 }
 

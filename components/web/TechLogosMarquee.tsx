@@ -150,7 +150,7 @@ export function TechLogosMarquee() {
     <section className="relative w-full py-16 sm:py-20 md:py-24 overflow-hidden border-t border-border/50 bg-background/50">
       {/* Header Info */}
       <div className="max-w-4xl mx-auto text-center px-4 mb-12 sm:mb-14">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border border-primary/30 bg-primary/10 text-foreground mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-lg text-xs font-semibold uppercase tracking-wider border border-primary/30 bg-primary/10 text-foreground mb-4">
           <span>Technology Ecosystem</span>
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-heading tracking-tight text-foreground">
