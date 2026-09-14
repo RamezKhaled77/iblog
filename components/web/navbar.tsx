@@ -14,7 +14,7 @@ export function Navbar() {
   const { isAuthenticated, isLoading } = useConvexAuth();
 
   return (
-    <nav className="w-full py-5 flex items-center justify-between">
+    <nav className="flex w-full items-center justify-between rounded-2xl border border-border/70 bg-background/70 px-3 py-2.5 shadow-lg shadow-black/10 backdrop-blur-xl supports-[backdrop-filter]:bg-background/55 sm:px-4 sm:py-3">
       <div className="flex items-center gap-12">
         <Link href="/">
           <h1 className="text-3xl font-bold">
