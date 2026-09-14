@@ -18,11 +18,7 @@ const socialLinks = [
     href: "https://github.com/RamezKhaled77/nextjs-tutorial",
     mark: "GH",
   },
-  {
-    label: "X / Twitter",
-    href: "https://x.com/RamezKhaled77",
-    mark: "X",
-  },
+
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/ramez-khaled/",
