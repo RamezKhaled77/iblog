@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { HeroSection } from "@/components/web/HeroSection";
 import { TechLogosMarquee } from "@/components/web/TechLogosMarquee";
 import { BentoGridSection } from "@/components/web/BentoGridSection";
+import { PlatformFeaturesSection } from "@/components/web/PlatformFeaturesSection";
 
 export const metadata: Metadata = {
   title: {
@@ -69,6 +70,7 @@ export default function Home() {
     <div className="flex flex-col w-full">
       <HeroSection />
       <TechLogosMarquee />
+      <PlatformFeaturesSection />
       <BentoGridSection />
     </div>
   );

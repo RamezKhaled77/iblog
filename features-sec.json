@@ -1,0 +1,24 @@
+{
+  "features": [
+    {
+      "title": "Discover New Ideas",
+      "paragraph": "Explore fresh perspectives, practical insights, and ideas from curious minds across the tech and creative world.",
+      "imgUrl": "/public/feat-1.jpeg"
+    },
+    {
+      "title": "Read. Learn. Grow.",
+      "paragraph": "Dive into thoughtful articles that help you sharpen your skills, expand your knowledge, and see things differently.",
+      "imgUrl": "/public/feat-2.jpeg"
+    },
+    {
+      "title": "Save What Matters",
+      "paragraph": "Bookmark the articles that inspire you and build your own collection of ideas worth coming back to.",
+      "imgUrl": "/public/feat-3.jpeg"
+    },
+    {
+      "title": "Share Your Perspective",
+      "paragraph": "Turn your knowledge and experiences into meaningful stories and share them with a community of curious readers.",
+      "imgUrl": "/public/feat-4.jpeg"
+    }
+  ]
+}
