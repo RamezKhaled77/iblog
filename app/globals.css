@@ -209,7 +209,8 @@
 }
 
 .cta-grid {
-  background-image: linear-gradient(rgba(143, 224, 0, 0.035) 1px, transparent 1px),
+  background-image:
+    linear-gradient(rgba(143, 224, 0, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(143, 224, 0, 0.035) 1px, transparent 1px);
   background-size: 52px 52px;
   mask-image: radial-gradient(ellipse at center, black 15%, transparent 76%);

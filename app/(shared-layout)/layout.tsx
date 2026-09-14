@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/web/navbar";
+import { SiteFooter } from "@/components/web/SiteFooter";
 import { ReactNode } from "react";
 
 export default function SharedLayout({ children }: { children: ReactNode }) {
@@ -10,6 +11,7 @@ export default function SharedLayout({ children }: { children: ReactNode }) {
         </div>
       </header>
       <div className="w-full flex-1 flex flex-col">{children}</div>
+      <SiteFooter />
     </>
   );
 }
