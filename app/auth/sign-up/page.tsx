@@ -137,11 +137,11 @@ export default function SignUpPage() {
               <span>Sign Up</span>
             )}
           </Button>
-          <p className="text-zinc-300">
+          <p className="text-muted-foreground">
             You have an account.
             <Link
               href="/auth/login"
-              className={`${buttonVariants({ variant: "link" })} text-zinc-300`}
+              className={`${buttonVariants({ variant: "link" })} text-sidebar-primary! dark:text-primary!`}
             >
               Login
             </Link>
