@@ -1,3 +1,29 @@
+<div align="center">
+  <br />
+    <a href="https://iblog-eosin.vercel.app/" target="_blank">
+      <img src="public/hero.png" alt="Project Banner">
+    
+  <br />
+
+  <div>
+     <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
+    <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
+    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
+    <img src="https://img.shields.io/badge/-Convex-black?style=for-the-badge&logoColor=black&logo=convex&color=f6eedb" alt="convex" />
+     <img src="https://img.shields.io/badge/-betterauth-black?style=for-the-badge&logoColor=white&logo=betterauth&color=black" alt="better-auth" />
+     <img src="https://img.shields.io/badge/-shadcnui-black?style=for-the-badge&logoColor=white&logo=shadcnui&color=black" alt="shadcn" />
+     <img src="https://img.shields.io/badge/-zod-black?style=for-the-badge&logoColor=fffefe&logo=zod&color=4090ff" alt="zod" />
+     <img src="https://img.shields.io/badge/-reacthookform-black?style=for-the-badge&logoColor=white&logo=react-hook-form&color=EC5990" alt="react-hook-form" />
+     <img src="https://img.shields.io/badge/-pnpm-black?style=for-the-badge&logoColor=f9ac01&logo=pnpm&color=4e4f4f" alt="pnpm" />
+  </div>
+
+<h3 align="center">Blog and knowledge Sharing Platform</h3>
+
+</div>
+
+
+
+
 # iBlog
 
 A modern blogging platform built with Next.js 16 and Convex. Readers can browse and search posts, read full articles with real-time presence indicators, and leave comments. Authenticated users can publish their own posts with cover images.
