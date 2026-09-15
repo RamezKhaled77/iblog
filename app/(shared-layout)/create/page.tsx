@@ -52,11 +52,11 @@ export default function CreatePage() {
 
   return (
     <div className="max-w-7xl mx-auto w-full px-4 md:px-6 lg:px-8 py-12">
-      <div className="text-center mb-6">
+      <div className="text-center mb-10">
         <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
           Create Post
         </h1>
-        <p className="text-xl max-w-2xl mx-auto text-muted-foreground pt-2">
+        <p className="text-xl max-w-2xl mx-auto text-muted-foreground pt-4">
           Share your thoughts with the big world
         </p>
       </div>
