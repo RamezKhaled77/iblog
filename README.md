@@ -2,6 +2,7 @@
   <br />
     <a href="https://iblog-eosin.vercel.app/" target="_blank">
       <img src="public/hero.png" alt="Project Banner">
+    </a>
     
   <br />
 
@@ -20,6 +21,8 @@
 <h3 align="center">Blog and knowledge Sharing Platform</h3>
 
 </div>
+ <br />
+  <br />
 
 
 
