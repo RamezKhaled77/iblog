@@ -86,7 +86,7 @@ function BlogCard({ post }: BlogCardProps) {
       </div>
       <CardContent>
         <Link href={`/blog/${post._id}`}>
-          <h2 className="text-xl font-medium hover:text-primary">
+          <h2 className="text-xl font-medium hover:text-primary truncate">
             {post.title}
           </h2>
         </Link>
